@@ -282,6 +282,9 @@ endif(UNIX)
 add_subdirectory(src)
 add_subdirectory(examples)
 add_subdirectory(examples/getstarted)
+
+add_subdirectory(randrun)
+
 if(NATS_BUILD_STREAMING)
   add_subdirectory(examples/stan)
 endif()
