@@ -1,22 +1,28 @@
 #include "rr_random.h"
 
 /* seed the random number generator, protected so it can be called only once */
-void rr_init_rand(void) {
+void rr_init_rand(int seed) {
 
     if (! rr_seed) {
-        rr_seed = time(0);
+        if (seed) {
+            rr_seed = seed;
+        }
+        else {
+            rr_seed = time(0);
+        }
+        
         srand(rr_seed);
     }
 }
 
-/* Returns a random int between 0 and limit (not inclusive */
-int rr_rand_lim(int limit) {
-    int divisor = RAND_MAX/(limit);
-    int retval;
+/* Returns a random int between 0 and upperlimit (not inclusive) */
+int rr_rand_lim(int upperLimit) {
+    int divisor = RAND_MAX/(upperLimit);
+    int returnVal;
 
     do {
-        retval = rand() / divisor;
-    } while (retval > limit);
+        returnVal = rand() / divisor;
+    } while (returnVal > upperLimit);
 
-    return retval;
+    return returnVal;
 }

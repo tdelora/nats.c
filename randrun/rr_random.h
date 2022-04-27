@@ -7,7 +7,7 @@
 
 static int rr_seed = 0;
 
-void rr_init_rand(void);
+void rr_init_rand(int seed);
 int rr_rand_lim(int limit);
 
 
