@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "rr_nouns_verbs.h"
 #include "rr_random.h"
 
 
