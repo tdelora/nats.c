@@ -1,14 +1,15 @@
 #include "randrun.h"
 
 int main() {
-   int randomSeed = 0, count = 100, returnValue = 0;
+   int count = 0, returnValue = 0;
 
    rr_nats_nouns natsNoun = NATS_CONNECTION;
    
+   randrunInit();
    /* Initialize rand */
    rr_init_rand(randomSeed);
 
-   while (count && !returnValue) {
+   while (count < maxSteps && !returnValue) {
       natsNoun = rr_get_randon_nats_noun();
 
       switch (natsNoun)
@@ -32,7 +33,18 @@ int main() {
       }
 
       fprintf(stdout,"\n");
-      count--;
+      count++;
    }
    return(returnValue);  
-}
+} /* main() */
+
+void randrunInit(void) {
+   randomSeed = 0;
+   maxSteps = 100;
+} /* randrunInit() */
+
+int parseArgs(int argc, char ** argv) {
+   int returnValue = 0;
+
+   return(returnValue);
+} /* parseArgs() */
