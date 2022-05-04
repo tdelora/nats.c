@@ -1,11 +1,17 @@
 #include "randrun.h"
 
-int main() {
+int main(int argc, char ** argv) {
    int count = 0, returnValue = 0;
 
    rr_nats_nouns natsNoun = NATS_CONNECTION;
    
+   /* Initialize steps */
+   /* Init global values */
    randrunInit();
+
+   /* Read Command Line */
+   returnValue = parseArgs(argc,argv);
+
    /* Initialize rand */
    rr_init_rand(randomSeed);
 
