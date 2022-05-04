@@ -50,7 +50,46 @@ void randrunInit(void) {
 } /* randrunInit() */
 
 int parseArgs(int argc, char ** argv) {
-   int returnValue = 0;
+   int i = 0, returnValue = 0;
+
+   for ( i = 1 ; i < argc ; i++ ) {
+      if ( !strcasecmp(argv[i], "-maxSteps")  ) {
+         if (i + 1 == argc) {
+            printUsageAndExit(argv[0],NULL);
+         }
+         
+         maxSteps = atoi(argv[++i]);
+      }
+      else if ( !strcasecmp(argv[i], "-randomSeed") ) {
+         if (i + 1 == argc) {
+            printUsageAndExit(argv[0],NULL);
+         }
+         
+         randomSeed = atoi(argv[++i]);
+      }
+      else if ( !strcasecmp(argv[i], "-h") || !strcasecmp(argv[i], "-help") ) {
+         printUsageAndExit(argv[0],NULL);
+      }
+      else {
+         printUsageAndExit(argv[0],argv[i]);
+      }
+   }
 
    return(returnValue);
 } /* parseArgs() */
+
+void printUsageAndExit(char * progName, char * complain) {
+
+   if ( complain!= NULL ) {
+      fprintf(stdout,"\nUnknown argument: %s\n", complain);
+   }
+
+   fprintf(stdout,"\nUsage: %s [options]\n\n" \
+   "options are:\n" \
+   "-maxSteps <n>\tThe maximum number of steps to run.\n" \
+   "-randomSeed <n>\tThe value to use for random seed.\n" \
+   "-help (or -h)\tPrint Usage"
+   "\n\n"
+   ,progName);
+   exit(1);
+} /* printUsageAndExit */

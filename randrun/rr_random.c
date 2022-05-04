@@ -3,7 +3,7 @@
 /* seed the random number generator, protected so it can be called only once */
 void rr_init_rand(int seed) {
 
-    if (! rr_seed) {
+    if (rr_seed == 0) {
         if (seed) {
             rr_seed = seed;
         }
@@ -13,6 +13,8 @@ void rr_init_rand(int seed) {
         
         srand(rr_seed);
     }
+
+    fprintf(stdout,"\nrr_seed: %d seed: %d\n",rr_seed,seed);
 }
 
 /* Returns a random int between 0 and upperlimit (not inclusive) */

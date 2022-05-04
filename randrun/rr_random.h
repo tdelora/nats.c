@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-static int rr_seed = 0;
+static int rr_seed;
 
 void rr_init_rand(int seed);
 int rr_rand_lim(int limit);
