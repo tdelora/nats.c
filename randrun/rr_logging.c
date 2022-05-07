@@ -39,10 +39,18 @@ int rr_writeErrorLine(char * line) {
 }
 
 int rr_writeOutputLine(char * line) {
-    int returnValue =  0;
+    int returnValue =  0, size = strlen(line);
 
     RR_NULL_BUFFER;
 
+    if ( size < RR_LINE_BUFFER_SIZE ) {
+        returnValue = sprintf(rr_log_line_buffer,"%s",line);
+        RR_WRITE_LINE(stderr,rr_log_line_buffer);
+    }
+    else {
+        fprintf(stderr,"\nrr_writeOutputLine: Received too long log line - Rcvd: %d - Limit: %d\nLine omited\n",
+        size,RR_LINE_BUFFER_SIZE);
+    }
 
     return(returnValue);
 }

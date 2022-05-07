@@ -2,10 +2,12 @@
 
 int main(int argc, char ** argv) {
    int count = 0, returnValue = 0;
+   char errorString[ERROR_STR_BUFFER_SIZE];
 
    rr_nats_nouns natsNoun = NATS_CONNECTION;
    
    /* Initialize steps */
+   memset(errorString,0,ERROR_STR_BUFFER_SIZE);
    /* Init global values */
    randrunInit();
 
@@ -21,19 +23,20 @@ int main(int argc, char ** argv) {
       switch (natsNoun)
       {
       case NATS_CONNECTION:
-         fprintf(stdout,"%s","NATS_CONNECTION");
+         rr_writeWorkLine((char *) "NATS_CONNECTION");
          break;
       
       case NATS_PUBLISHER:
-         fprintf(stdout,"%s","NATS_PUBLISHER");
+         rr_writeWorkLine((char *) "NATS_PUBLISHER");
          break;
 
       case NATS_SUBSCRIBER:
-         fprintf(stdout,"%s","NATS_SUBSCRIBER");
+         rr_writeWorkLine((char *) "NATS_SUBSCRIBER");
          break;
       
       default:
-         fprintf(stderr,"Main received unexpected nats noun %d\n",natsNoun);
+         sprintf(errorString,"Main received unexpected nats noun %d\n",natsNoun);
+         rr_writeErrorLine(errorString);
          returnValue = 1;
          break;
       }

@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define RR_LOG_WORK_PREPEND "## RR WORK "
+#define RR_LOG_WORK_PREPEND "### RR_WORK "
 #define RR_LINE_BUFFER_SIZE 2048
 
 char rr_log_line_buffer[RR_LINE_BUFFER_SIZE];
