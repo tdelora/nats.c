@@ -14,7 +14,7 @@ void rr_init_rand(int seed) {
         srand(rr_seed);
     }
 
-    fprintf(stdout,"\nrr_seed: %d seed: %d\n",rr_seed,seed);
+    /* fprintf(stdout,"\nrr_seed: %d seed: %d\n",rr_seed,seed); */
 }
 
 /* Returns a random int between 0 and upperlimit (not inclusive) */
