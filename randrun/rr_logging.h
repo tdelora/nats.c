@@ -9,7 +9,9 @@
 
 char rr_log_line_buffer[RR_LINE_BUFFER_SIZE];
 
-void rr_null_buffer(void);
+#define RR_NULL_BUFFER memset(rr_log_line_buffer,0,RR_LINE_BUFFER_SIZE)
+#define RR_WRITE_LINE(STREAM,LINE)  fprintf(STREAM,"%s\n",LINE)
+
 int rr_writeWorkLine(char * line);
 int rr_writeErrorLine(char * line);
 int rr_writeOutputLine(char * line);
