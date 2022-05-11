@@ -6,22 +6,23 @@ int main(int argc, char ** argv) {
 
    rr_nats_nouns natsNoun = NATS_CONNECTION;
    
-   if ( ! isatty(fileno(stdin))) {
+   if ( ! isatty(fileno(stdin)) ) {
       /* File read */
       fprintf(stdout,"\nFile read not implemented\n");
       exit(1);
    }
+   else {
+      /* Initialize steps */
+      memset(errorString,0,ERROR_STR_BUFFER_SIZE);
+      /* Init global values */
+      randrunInit();
 
-   /* Initialize steps */
-   memset(errorString,0,ERROR_STR_BUFFER_SIZE);
-   /* Init global values */
-   randrunInit();
+      /* Read Command Line */
+      returnValue = parseArgs(argc,argv);
 
-   /* Read Command Line */
-   returnValue = parseArgs(argc,argv);
-
-   /* Initialize rand */
-   rr_init_rand(randomSeed);
+      /* Initialize rand */
+      rr_init_rand(randomSeed);
+   }
 
    while (count < maxSteps && !returnValue) {
       natsNoun = rr_get_randon_nats_noun();
