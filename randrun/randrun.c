@@ -6,6 +6,12 @@ int main(int argc, char ** argv) {
 
    rr_nats_nouns natsNoun = NATS_CONNECTION;
    
+   if ( ! isatty(fileno(stdin))) {
+      /* File read */
+      fprintf(stdout,"\nFile read not implemented\n");
+      exit(1);
+   }
+
    /* Initialize steps */
    memset(errorString,0,ERROR_STR_BUFFER_SIZE);
    /* Init global values */

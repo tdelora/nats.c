@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <strings.h>
+#include <unistd.h>
 #include "rr_nats_nouns_verbs.h"
 #include "rr_logging.h"
 #include "rr_random.h"
