@@ -6,51 +6,52 @@ int main(int argc, char ** argv) {
 
    rr_nats_nouns natsNoun = NATS_CONNECTION;
    
+   /* Initialize steps */
+   memset(errorString,0,ERROR_STR_BUFFER_SIZE);
+   /* Init global values */
+   randrunInit();
+
+   /* Read Command Line */
+   returnValue = parseArgs(argc,argv);
+
+   /* Initialize rand */
+   rr_init_rand(randomSeed);
+
    if ( ! isatty(fileno(stdin)) ) {
       /* File read */
       fprintf(stdout,"\nFile read not implemented\n");
       exit(1);
    }
    else {
-      /* Initialize steps */
-      memset(errorString,0,ERROR_STR_BUFFER_SIZE);
-      /* Init global values */
-      randrunInit();
+      while (count < maxSteps && !returnValue) {
+         natsNoun = rr_get_randon_nats_noun();
 
-      /* Read Command Line */
-      returnValue = parseArgs(argc,argv);
-
-      /* Initialize rand */
-      rr_init_rand(randomSeed);
-   }
-
-   while (count < maxSteps && !returnValue) {
-      natsNoun = rr_get_randon_nats_noun();
-
-      switch (natsNoun)
-      {
-      case NATS_CONNECTION:
-         rr_writeWorkLine((char *) "NATS_CONNECTION");
-         break;
+         switch (natsNoun)
+         {
+            case NATS_CONNECTION:
+               rr_writeWorkLine((char *) "NATS_CONNECTION");
+               break;
       
-      case NATS_PUBLISHER:
-         rr_writeWorkLine((char *) "NATS_PUBLISHER");
-         break;
+            case NATS_PUBLISHER:
+               rr_writeWorkLine((char *) "NATS_PUBLISHER");
+               break;
 
-      case NATS_SUBSCRIBER:
-         rr_writeWorkLine((char *) "NATS_SUBSCRIBER");
-         break;
+            case NATS_SUBSCRIBER:
+               rr_writeWorkLine((char *) "NATS_SUBSCRIBER");
+               break;
       
-      default:
-         sprintf(errorString,"Main received unexpected nats noun %d\n",natsNoun);
-         rr_writeErrorLine(errorString);
-         returnValue = 1;
-         break;
+            default:
+               sprintf(errorString,"Main received unexpected nats noun %d\n",natsNoun);
+               rr_writeErrorLine(errorString);
+               returnValue = 1;
+               break;
+         }
+
+         fprintf(stdout,"\n");
+         count++;
       }
-
-      fprintf(stdout,"\n");
-      count++;
    }
+   
    return(returnValue);  
 } /* main() */
 
