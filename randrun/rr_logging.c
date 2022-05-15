@@ -10,7 +10,7 @@ int rr_writeWorkLine(char * line) {
     RR_NULL_BUFFER;
 
     if ( size < RR_LINE_BUFFER_SIZE) {
-        returnValue = sprintf(rr_log_line_buffer,"%s%s",RR_LOG_WORK_PREPEND,line);
+        returnValue = sprintf(rr_log_line_buffer,"%s%s\n",RR_LOG_WORK_PREPEND,line);
         RR_WRITE_LINE(stdout,rr_log_line_buffer);
     }
     else {

@@ -82,20 +82,17 @@ void printUsageAndExit(char * progName, char * complain) {
 
 int readFromFile(void) {
    int returnValue = 0, sizeRead = 0;
-   char fileReadBuffer[FILE_READ_BUFFER_SIZE];
+   char fileReadBuffer[FILE_READ_BUFFER_SIZE], * token = (char *) NULL;
 
    memset(fileReadBuffer,0,FILE_READ_BUFFER_SIZE);
 
    /* Read from stdin and break up the results */
    while ((sizeRead = read(fileno(stdin), fileReadBuffer, FILE_READ_BUFFER_SIZE)) > 0) {
-
-      char* token = strtok(fileReadBuffer, "\n");
+      token = strtok(fileReadBuffer, "\n");
       while (token != NULL) {
-        printf("%s\n", token);
+        rr_check_execute_nats_noun_verb_line(token);
         token = strtok(NULL, "\n");
-    }
-
-      /* rr_writeWorkLine(fileReadBuffer); */
+      }
 
       memset(fileReadBuffer,0,FILE_READ_BUFFER_SIZE);
    }
