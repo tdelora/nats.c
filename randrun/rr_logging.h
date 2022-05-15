@@ -15,5 +15,6 @@ char rr_log_line_buffer[RR_LINE_BUFFER_SIZE];
 int rr_writeWorkLine(char * line);
 int rr_writeErrorLine(char * line);
 int rr_writeOutputLine(char * line);
+char * rr_logLineCheck(char * line);
 
 #endif /* RR_LOGGING_ */

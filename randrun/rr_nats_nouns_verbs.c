@@ -2,17 +2,25 @@
 
 int rr_check_execute_nats_noun_verb_line(char * line) {
     int returnValue = 0;
-
-    fprintf(stdout,"check: %s\n",line);
+    char * execLine = rr_logLineCheck(line);
+    if (execLine) {
+        /* This is a log log line with work to do */
+        /* Pass the exec section (execLine) to the execute function */
+        rr_execute_nats_noun_verb_line(execLine);
+    } else {
+        returnValue = 1;
+    }
 
     return(returnValue);
 } /* rr_check_execute_nats_noun_verb_line */
 
 
-int rr_execute_nats_noun_verb_line(char * line) {
+int rr_execute_nats_noun_verb_line(char * execLine) {
     int returnValue = 0;
 
-    fprintf(stdout,"%s\n",line);
+    /* Write the exec section (execLine) to the log then ececute it */
+    rr_writeWorkLine(execLine);
+    fprintf(stdout,"exec: %s\n",execLine);
 
     return(returnValue);
 } /* rr_execute_nats_noun_verb_line */
@@ -44,12 +52,12 @@ int rr_genex_random_nats_noun_verb(void) {
             sprintf(errorString,"Main received unexpected nats noun %d\n",natsNoun);
             rr_writeErrorLine(errorString);
             natsNounString = (char *) NULL;
-            returnValue = 1;
+            /* returnValue = 1; */
             break;
     }
 
     if ( natsNounString ) {
-        rr_writeWorkLine((char *) natsNounString);
+        /* Pass the exec section (execLine) to the execute function */
         rr_execute_nats_noun_verb_line(natsNounString);
     }
 

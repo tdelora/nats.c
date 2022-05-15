@@ -54,3 +54,17 @@ int rr_writeOutputLine(char * line) {
 
     return(returnValue);
 } /* rr_writeOutputLine */
+
+
+/* rr_logLineCheck checks if line starts with RR_LOG_WORK_PREPEND
+   and if so return a char * to the exec part of the line */
+char * rr_logLineCheck(char * line) {
+    char * cr = strstr(line,RR_LOG_WORK_PREPEND);
+    int prependLen = strlen(RR_LOG_WORK_PREPEND);
+
+    if (cr) {
+        cr = line + prependLen;
+    }
+
+    return(cr);
+} /* rr_logLineCheck */
