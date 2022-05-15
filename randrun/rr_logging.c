@@ -2,7 +2,7 @@
 
 void rr_null_buffer(void) {
     memset(rr_log_line_buffer,0,RR_LINE_BUFFER_SIZE);
-}
+} /* rr_null_buffer */
 
 int rr_writeWorkLine(char * line) {
     int returnValue =  0, size = ( strlen(RR_LOG_WORK_PREPEND) + strlen(line) );
@@ -19,7 +19,7 @@ int rr_writeWorkLine(char * line) {
     }
 
     return(returnValue);
-}
+} /* rr_writeWorkLine */
 
 int rr_writeErrorLine(char * line) {
     int returnValue =  0, size = strlen(line);
@@ -36,7 +36,7 @@ int rr_writeErrorLine(char * line) {
     }
 
     return(returnValue);
-}
+} /* rr_writeErrorLine */
 
 int rr_writeOutputLine(char * line) {
     int returnValue =  0, size = strlen(line);
@@ -53,4 +53,4 @@ int rr_writeOutputLine(char * line) {
     }
 
     return(returnValue);
-}
+} /* rr_writeOutputLine */

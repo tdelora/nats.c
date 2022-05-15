@@ -13,7 +13,6 @@ int randomSeed;
 int maxSteps;
 
 #define FILE_READ_BUFFER_SIZE 4096
-#define ERROR_STR_BUFFER_SIZE 512
 
 void randrunInit(void);
 int parseArgs(int argc, char ** argv);

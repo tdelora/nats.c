@@ -106,37 +106,9 @@ int readFromFile(void) {
 
 int generateRandomly(void) {
    int count = 0, returnValue = 0;
-   char errorString[ERROR_STR_BUFFER_SIZE];
-   rr_nats_nouns natsNoun = NATS_CONNECTION;
-
-   memset(errorString,0,ERROR_STR_BUFFER_SIZE);
 
    while (count < maxSteps && !returnValue) {
-
-      natsNoun = rr_get_randon_nats_noun();
-
-      switch (natsNoun)
-      {
-         case NATS_CONNECTION:
-            rr_writeWorkLine((char *) "NATS_CONNECTION");
-            break;
-      
-         case NATS_PUBLISHER:
-            rr_writeWorkLine((char *) "NATS_PUBLISHER");
-            break;
-
-         case NATS_SUBSCRIBER:
-            rr_writeWorkLine((char *) "NATS_SUBSCRIBER");
-            break;
-      
-         default:
-            sprintf(errorString,"Main received unexpected nats noun %d\n",natsNoun);
-            rr_writeErrorLine(errorString);
-            returnValue = 1;
-            break;
-      }
-
-      fprintf(stdout,"\n");
+      returnValue = rr_genex_random_nats_noun_verb();
       count++;
    }
 
