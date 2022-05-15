@@ -88,7 +88,6 @@ int readFromFile(void) {
 
    /* Read from stdin and break up the results */
    while ((sizeRead = read(fileno(stdin), fileReadBuffer, FILE_READ_BUFFER_SIZE)) > 0) {
-      fprintf(stdout,"%s",fileReadBuffer);
 
       char* token = strtok(fileReadBuffer, "\n");
       while (token != NULL) {
