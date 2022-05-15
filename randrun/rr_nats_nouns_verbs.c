@@ -36,6 +36,10 @@ int rr_genex_random_nats_noun_verb(void) {
     natsNoun = rr_get_random_nats_noun();
 
     switch (natsNoun) {
+        case NATS_INIT:
+            natsNounString =  (char *)  "NATS_INIT";
+            break;
+
         case NATS_CONNECTION:
             natsNounString =  (char *)  "NATS_CONNECTION";
             break;
@@ -49,7 +53,7 @@ int rr_genex_random_nats_noun_verb(void) {
             break;
         
         default:
-            sprintf(errorString,"Main received unexpected nats noun %d\n",natsNoun);
+            sprintf(errorString,"rr_genex_random_nats_noun_verb received unexpected nats noun %d\n",natsNoun);
             rr_writeErrorLine(errorString);
             natsNounString = (char *) NULL;
             /* returnValue = 1; */

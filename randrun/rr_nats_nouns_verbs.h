@@ -6,8 +6,8 @@
 #include "rr_logging.h"
 #include "rr_random.h"
 
-typedef enum { NATS_CONNECTION = 0, NATS_PUBLISHER, NATS_SUBSCRIBER } rr_nats_nouns;
-#define RR_NATS_NOUN_COUNT 3        /* Fixme - autocalculate size */
+typedef enum { NATS_INIT = 0, NATS_CONNECTION, NATS_PUBLISHER, NATS_SUBSCRIBER } rr_nats_nouns;
+#define RR_NATS_NOUN_COUNT 4        /* Fixme - autocalculate size */
 #define ERROR_STR_BUFFER_SIZE 512
 
 
