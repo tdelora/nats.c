@@ -5,6 +5,11 @@
 #include <strings.h>
 #include "rr_logging.h"
 #include "rr_random.h"
+#include "rr_nats_init_nv.h"
+#include "rr_nats_connect_nv.h"
+#include "rr_nats_pub_nv.h"
+#include "rr_nats_sub_nv.h"
+
 
 typedef enum { NATS_INIT = 0, NATS_CONNECTION, NATS_PUBLISHER, NATS_SUBSCRIBER } rr_nats_nouns;
 #define RR_NATS_NOUN_COUNT 4        /* Fixme - autocalculate size */
