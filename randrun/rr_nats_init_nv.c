@@ -1,0 +1,1 @@
+#include "rr_nats_init_nv.h"
