@@ -31,38 +31,31 @@ int rr_genex_random_nats_noun_verb(void) {
     rr_nats_nouns natsNoun = NATS_CONNECTION;
     int returnValue = 0;
 
-    memset(errorString,0,ERROR_STR_BUFFER_SIZE);
-
     natsNoun = rr_get_random_nats_noun();
 
     switch (natsNoun) {
         case NATS_INIT:
-            natsNounString =  (char *)  "NATS_INIT";
+            rr_select_execute_nats_init_verb();
             break;
 
         case NATS_CONNECTION:
-            natsNounString =  (char *)  "NATS_CONNECTION";
+            rr_select_execute_nats_conn_verb();
             break;
       
         case NATS_PUBLISHER:
-            natsNounString = (char *) "NATS_PUBLISHER";
+            rr_select_execute_nats_pub_verb();
             break;
 
         case NATS_SUBSCRIBER:
-            natsNounString = (char *) "NATS_SUBSCRIBER";
+            rr_select_execute_nats_sub_verb();
             break;
         
         default:
             sprintf(errorString,"rr_genex_random_nats_noun_verb received unexpected nats noun %d\n",natsNoun);
             rr_writeErrorLine(errorString);
             natsNounString = (char *) NULL;
-            /* returnValue = 1; */
+            returnValue = 1;
             break;
-    }
-
-    if ( natsNounString ) {
-        /* Pass the exec section (execLine) to the execute function */
-        rr_execute_nats_noun_verb_line(natsNounString);
     }
 
     return(returnValue);
