@@ -7,7 +7,7 @@
 
 #define NV_STR_BUFFER_SIZE 512
 
-int rr_select_execute_nats_conn_verb_(void);
+int rr_select_execute_nats_conn_verb(void);
 int rr_execute_nats_conn_verb_line(char * verbLine);
 
 #endif /* RR_NATS_CONN_NV_H_ */

@@ -18,6 +18,8 @@ int rr_check_execute_nats_noun_verb_line(char * line) {
 int rr_execute_nats_noun_verb_line(char * execLine) {
     int returnValue = 0;
 
+    fprintf(stdout,"execLine: %s\n",execLine);
+
     /* Write the exec section (execLine) to the log then ececute it */
     rr_writeWorkLine(execLine);
     fprintf(stdout,"exec: %s\n",execLine);
@@ -27,7 +29,7 @@ int rr_execute_nats_noun_verb_line(char * execLine) {
 
 
 int rr_genex_random_nats_noun_verb(void) {
-    char errorString[ERROR_STR_BUFFER_SIZE], * natsNounString = (char *) NULL;
+    char errorString[ERROR_STR_BUFFER_SIZE];
     rr_nats_nouns natsNoun = NATS_CONNECTION;
     int returnValue = 0;
 
@@ -53,7 +55,6 @@ int rr_genex_random_nats_noun_verb(void) {
         default:
             sprintf(errorString,"rr_genex_random_nats_noun_verb received unexpected nats noun %d\n",natsNoun);
             rr_writeErrorLine(errorString);
-            natsNounString = (char *) NULL;
             returnValue = 1;
             break;
     }
@@ -68,3 +69,4 @@ rr_nats_nouns rr_get_random_nats_noun(void) {
 
     return(returnValue);
 } /* rr_get_random_nats_noun */
+
